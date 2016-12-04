@@ -1,0 +1,17 @@
+{
+  "name": "basics",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack --progress --colors --display-error-details",
+    "build-w": "webpack --progress --colors --display-error-details --watch"
+  },
+  "author": "moka",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "html-webpack-plugin": "^2.24.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3"
+  }
+}
