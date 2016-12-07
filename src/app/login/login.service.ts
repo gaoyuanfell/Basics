@@ -12,6 +12,7 @@ export class LoginService{
     public userUrl:any;
     constructor(private _global:Global, private  _http:Http){
         this.userUrl = _global.url.user;
+        console.info(_global);
     }
     public hasLogin:boolean = false;
 
