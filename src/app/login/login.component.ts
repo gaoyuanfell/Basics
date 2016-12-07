@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit{
                 if(res && res.code == 200){
                     this._global.hasLogin = true;
                     this._global.tokenValue = res.token || Cookie.get(this._global.tokenKey);
+                    window.sessionStorage.setItem(this._global.tokenKey,res.token);
                     this._router.navigateByUrl("home");
                 }
             })
