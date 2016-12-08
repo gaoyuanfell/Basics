@@ -8,8 +8,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';//首页
 import { HomeComponent } from './home/home.component';
 
-//
-import {GrowlModule} from 'primeng/primeng';
+//插件primeng
+import {
+	CheckboxModule,
+} from 'primeng/primeng';
+
 
 // 服务 Injectable
 import { LoginService } from './login/login.service';//登录
@@ -29,7 +32,7 @@ import appRoutes from './app.routes';
 		appRoutes,
 		HttpModule,
 		FormsModule,
-		GrowlModule
+		CheckboxModule
 	],
 	declarations: [
 		AppComponent,

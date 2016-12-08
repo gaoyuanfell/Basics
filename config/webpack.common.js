@@ -6,7 +6,6 @@ var helpers = require('./helpers');
 module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
-    'primeng': './src/primeng.ts',
     'vendor': './src/vendor.ts',
     'rxjs': './src/rxjs.ts',
     'ng2': './src/ng2.ts',
@@ -28,8 +27,12 @@ module.exports = {
         loader: 'html'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[ext]'
+        test: /\.(woff|woff2|ttf|eot|svg)$/,
+        loader: 'file?name=static/font/[name].[ext]'
+      },
+      {
+        test: /\.(png|jpe?g|gif|ico)$/,
+        loader: 'file?name=static/img/[name].[ext]'
       },
       {
         test: /\.css$/,
@@ -46,7 +49,7 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'ng2', 'rxjs', 'vendor', 'polyfills','primeng'],
+      name: ['app', 'ng2', 'rxjs', 'vendor', 'polyfills'],
       chunksSortMode:'dependency'
     }),
 

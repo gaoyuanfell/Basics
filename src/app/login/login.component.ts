@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import {  } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Global } from '../base/global';
 import { Cookie } from '../base/helper';
+
+
 
 @Component({
     selector: 'app-login',
@@ -12,7 +13,13 @@ import { Cookie } from '../base/helper';
 })
 export class LoginComponent implements OnInit{
     _user:any;
-    remember:boolean; 
+    remember:boolean = false; 
+
+    selectedCities: string[] = [];
+
+    selectedCategories: string[] = ['Technology', 'Sports'];
+
+    checked: boolean = false;
 
     constructor(
         private _router: Router,
@@ -25,7 +32,6 @@ export class LoginComponent implements OnInit{
 
     ngOnInit(){
         this._user = {};
-        this.remember = true;
     }
 
     public doLogin():void{
@@ -52,5 +58,4 @@ export class LoginComponent implements OnInit{
                 }
             })
     }
-
 }
