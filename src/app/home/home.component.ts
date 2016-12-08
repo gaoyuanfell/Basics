@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import { Global } from '../base/global';
+import { Cookie } from '../base/helper';
 
 @Component({
     selector: 'app-home',
@@ -10,9 +11,9 @@ import { Global } from '../base/global';
 })
 export class HomeComponent implements OnInit{
     constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private loginService:LoginService,
+        private _router: Router,
+        private _route: ActivatedRoute,
+        private _loginService:LoginService,
         private _global:Global
     ){
 
@@ -22,11 +23,14 @@ export class HomeComponent implements OnInit{
     }
 
     public doLogout():void{
-        this.loginService.logout()
+        this._loginService.logout()
             .subscribe((res:any) => {
                 if(res && res.code == 200){
                     this._global.hasLogin = false;
-                    this.router.navigateByUrl("login");
+                    console.info(this._global.tokenKey);
+                    window.sessionStorage.removeItem(this._global.tokenKey);
+                    Cookie.remove(this._global.tokenKey);
+                    this._router.navigateByUrl("login");
                 }
             })
     }

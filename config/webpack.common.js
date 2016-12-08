@@ -6,7 +6,10 @@ var helpers = require('./helpers');
 module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
+    'primeng': './src/primeng.ts',
     'vendor': './src/vendor.ts',
+    'rxjs': './src/rxjs.ts',
+    'ng2': './src/ng2.ts',
     'app': './src/main.ts'
   },
 
@@ -18,17 +21,14 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        exclude:/node_modules/,
         loaders: ['awesome-typescript-loader', 'angular2-template-loader']
       },
       {
         test: /\.html$/,
-        exclude:/node_modules/,
         loader: 'html'
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        exclude:/node_modules/,
         loader: 'file?name=assets/[name].[ext]'
       },
       {
@@ -39,7 +39,6 @@ module.exports = {
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        exclude:/node_modules/,
         loader: 'raw'
       }
     ]
@@ -47,12 +46,12 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
+      name: ['app', 'ng2', 'rxjs', 'vendor', 'polyfills','primeng'],
+      chunksSortMode:'dependency'
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      favicon:'./public/images/favicon.ico'
+      template: 'src/index.html'
     })
   ]
 };

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+// import {  } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Global } from '../base/global';
 import { Cookie } from '../base/helper';
@@ -11,6 +12,7 @@ import { Cookie } from '../base/helper';
 })
 export class LoginComponent implements OnInit{
     _user:any;
+    remember:boolean; 
 
     constructor(
         private _router: Router,
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit{
 
     ngOnInit(){
         this._user = {};
+        this.remember = true;
     }
 
     public doLogin():void{
@@ -42,14 +45,12 @@ export class LoginComponent implements OnInit{
             .subscribe((res:any) => {
                 if(res && res.code == 200){
                     this._global.hasLogin = false;
+                    console.info(this._global.tokenKey);
+                    window.sessionStorage.removeItem(this._global.tokenKey);
+                    Cookie.remove(this._global.tokenKey);
                     this._router.navigateByUrl("login");
                 }
             })
     }
 
-}
-
-interface User{
-    user:string,
-    password:string
 }
