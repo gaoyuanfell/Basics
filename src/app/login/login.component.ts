@@ -13,13 +13,11 @@ import { Cookie } from '../base/helper';
 })
 export class LoginComponent implements OnInit{
     _user:any;
-    remember:boolean = false; 
+    remember:boolean = true; 
 
-    selectedCities: string[] = [];
-
-    selectedCategories: string[] = ['Technology', 'Sports'];
-
-    checked: boolean = false;
+    //测试
+    selectedCities:string[] = [];
+    selectedValue:number = 1;
 
     constructor(
         private _router: Router,

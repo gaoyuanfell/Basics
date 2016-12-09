@@ -5,6 +5,6 @@
 
 import '../public/css/global.css';
 
-import 'primeng/resources/primeng.css';
-import 'primeng/resources/themes/omega/theme.css';
+// import 'primeng/resources/primeng.css';
+// import 'primeng/resources/themes/omega/theme.css';
 import 'font-awesome/css/font-awesome.css';

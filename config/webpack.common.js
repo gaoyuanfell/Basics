@@ -27,11 +27,11 @@ module.exports = {
         loader: 'html'
       },
       {
-        test: /\.(woff|woff2|ttf|eot|svg)$/,
+        test: /\.(woff|woff2|ttf|eot|svg)?(\?.+)?$/,
         loader: 'file?name=static/font/[name].[ext]'
       },
       {
-        test: /\.(png|jpe?g|gif|ico)$/,
+        test: /\.(png|jpe?g|gif|ico)?(\?.+)?$/,
         loader: 'file?name=static/img/[name].[ext]'
       },
       {
@@ -50,11 +50,13 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'ng2', 'rxjs', 'vendor', 'polyfills'],
-      chunksSortMode:'dependency'
+      
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      chunksSortMode:'dependency',
+      hash:true
     })
   ]
 };
