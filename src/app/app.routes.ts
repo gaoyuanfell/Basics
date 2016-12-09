@@ -1,11 +1,11 @@
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
-const appRoutes = [
+const appRoutes:Routes = [
     {
         path:'',
-        component:LoginComponent
+        component:LoginComponent,
     },
     {
         path:'login',
