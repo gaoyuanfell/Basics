@@ -1,30 +1,11 @@
 import {
     BrowserXhr,
-    ConnectionBackend,
-    CookieXSRFStrategy,
-    Headers,
-    Http,
-    Request,
-    RequestOptions,
-    RequestOptionsArgs,
-    Response,
     ResponseOptions,
-    URLSearchParams,
     XHRBackend,
-    XSRFStrategy,
-    BaseRequestOptions
+    XSRFStrategy
 } from '@angular/http';
 import { HttpXHRBackend } from './httpInterceptor';
 import { Global } from './global';
-
-/**
- * http 请求拦截
- */
-/*const http = {
-    provide: Http, 
-    useFactory: (backend: ConnectionBackend, defaultOptions: RequestOptions ,global:Global) => {return new HttpInterceptor(backend, defaultOptions, global)}, 
-    deps: [XHRBackend, RequestOptions, Global]
-}*/
 
 const $http = {
     provide: XHRBackend, 

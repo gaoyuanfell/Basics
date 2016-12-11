@@ -56,14 +56,14 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
     @Input() style: any;
         
     @Input() styleClass: string;
-        
+
     @ViewChild('container') containerViewChild: ElementRef;
     
     @ViewChild('content') contentViewChild: ElementRef;
 
-    @ViewChild('ok') okViewChild: ElementRef;
+    @ViewChild('ok') okBtnViewChild: ElementRef;
 
-    @ViewChild('no') noViewChild: ElementRef;
+    @ViewChild('no') noBtnViewChild: ElementRef;
 
     @Output() onBeforeShow: EventEmitter<any> = new EventEmitter();
 
@@ -75,11 +75,14 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
 
     @Output() visibledChange:EventEmitter<any> = new EventEmitter();
 
-    @Output() okClick:EventEmitter<any> = new EventEmitter();
+    @Output() okChange:EventEmitter<any> = new EventEmitter();
 
-    @Output() noClick:EventEmitter<any> = new EventEmitter();
+    @Output() noChange:EventEmitter<any> = new EventEmitter();
     
     _visibled: boolean;
+
+    _ok:number;
+    _no:number;
     
     dragging: boolean;
 
@@ -107,6 +110,10 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
     
     shown: boolean;
     
+    okViewChild: HTMLDivElement;
+
+    noViewChild: HTMLDivElement;
+
     container: HTMLDivElement;
     
     contentContainer: HTMLDivElement;
@@ -120,6 +127,7 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
     }
 
     set visibled(val:boolean) {
+        console.info(val);
         this._visibled = val;
         
         if(this._visibled) {
@@ -131,7 +139,14 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
             this.disableModality();
         }
     }
-    
+
+    set ok(val:number){
+        this._ok = val;
+    }
+    set no(val:number){
+        this._no = val;
+    }
+
     show() {
         if(!this.positionInitialized) {
             this.center();
@@ -146,9 +161,21 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
     }
     
     ngAfterViewInit() {
+        
         this.container = <HTMLDivElement> this.containerViewChild.nativeElement;
         this.contentContainer =  <HTMLDivElement> this.contentViewChild.nativeElement;
-        
+        this.okViewChild = <HTMLDivElement> this.okBtnViewChild.nativeElement;
+        this.noViewChild = <HTMLDivElement> this.noBtnViewChild.nativeElement;
+
+            
+        this.documentOkListener = this.renderer.listen(this.okViewChild,'click',(event) => {
+            this.okChange.emit(false);
+        })
+
+        this.documentNoListener = this.renderer.listen(this.noViewChild,'click',(event) => {
+            this.noChange.emit(false);
+        })
+
         if(this.draggable) {
             this.documentDragListener = this.renderer.listenGlobal('body', 'mousemove', (event) => {
                 event.preventDefault();
@@ -238,9 +265,11 @@ export class Dialog implements AfterViewInit, AfterViewChecked, OnDestroy {
     }
     
     hide(event) {
-        this.onBeforeHide.emit(event);
-        this.visibledChange.emit(false);
-        this.onAfterHide.emit(event);
+        console.info(event);
+        // this.onBeforeHide.emit(event);
+        // this.visibledChange.emit(false);
+        this._visibled = false;
+        // this.onAfterHide.emit(event);
         event.preventDefault();
     }
     

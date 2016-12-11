@@ -8,7 +8,7 @@
         <ng-content></ng-content>
     </div>
     <div>
-        <button #ok type="button">ok</button>
+        <button #ok id="test" type="button">ok</button>
         <button #no type="button">no</button>
     </div>
     <div *ngIf="resizable" (mousedown)="initResize($event)">

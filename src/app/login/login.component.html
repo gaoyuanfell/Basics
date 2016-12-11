@@ -23,4 +23,5 @@
 			<button type="button" (click)="doLogin()" class="btn btn-default">登录</button>
 		</div>
 	</div>
+	<y-dialog header="Title" [(visibled)]="remember" (okChange)="ok()" (noChange)="no()"></y-dialog>
 </div>

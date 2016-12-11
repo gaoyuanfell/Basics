@@ -13,7 +13,7 @@ import { Cookie } from '../base/helper';
 })
 export class LoginComponent implements OnInit{
     _user:any;
-    remember:boolean = true; 
+    remember:boolean = false; 
 
     constructor(
         private _router: Router,
@@ -22,6 +22,16 @@ export class LoginComponent implements OnInit{
         private _global:Global
     ){
         
+    }
+
+    ok(e,a){
+        console.info(e);
+        console.info(a);
+    }
+
+    no(e,a){
+        console.info(e);
+        console.info(a);
     }
 
     ngOnInit(){
