@@ -1,8 +1,66 @@
-import { Http, Request, RequestOptionsArgs, Response, RequestOptions,ConnectionBackend, Headers,RequestMethod } from '@angular/http';
+import {
+    BaseRequestOptions,
+    BrowserXhr,
+    Connection,
+    ConnectionBackend,
+    Headers,
+    Http,
+    ReadyState,
+    Request,
+    RequestMethod,
+    RequestOptions,
+    RequestOptionsArgs,
+    Response,
+    ResponseOptions,
+    XHRBackend,
+    XHRConnection,
+    XSRFStrategy
+} from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 import { Global } from './global';
 
-export class HttpInterceptor extends Http{
+export class HttpXHRBackend extends XHRBackend{
+    global:Global
+    constructor(
+        _browserXHR: BrowserXhr,
+        _baseResponseOptions: ResponseOptions, 
+        _xsrfStrategy: XSRFStrategy,
+        global:Global
+    ){
+        super(_browserXHR,_baseResponseOptions,_xsrfStrategy);
+        this.global = global
+    }
+
+    createConnection(request: Request):XHRConnection{
+
+        var tokenKey = this.global.tokenKey;
+        var tokenValue = this.global.tokenValue;
+        request.headers.set(tokenKey,tokenValue);
+
+        let xhrConnection = super.createConnection(request);
+        xhrConnection.response = xhrConnection.response.catch((error) => {
+            return Observable.throw(error || "Server Error");
+        });
+        xhrConnection.response = xhrConnection.response.map((data:any) => {
+            try {
+                let res = data.json();
+                if(res && res.code == 200){
+                    return res;
+                }
+            } catch (e) {
+                return data._body;
+            }
+        });
+        return xhrConnection;
+    }
+}
+
+class HttpInterceptor extends Http{
     global:Global
 
     constructor(

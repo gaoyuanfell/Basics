@@ -1,23 +1,19 @@
+import { ease } from '../common/animation/animation';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Global } from '../base/global';
 import { Cookie } from '../base/helper';
 
-
-
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.css'],
+    animations:[ease]
 })
 export class LoginComponent implements OnInit{
     _user:any;
     remember:boolean = true; 
-
-    //测试
-    selectedCities:string[] = [];
-    selectedValue:number = 1;
 
     constructor(
         private _router: Router,
@@ -35,6 +31,7 @@ export class LoginComponent implements OnInit{
     public doLogin():void{
         this._loginService.login(this._user)
             .subscribe((res:any) => {
+                console.info(res);
                 if(res && res.code == 200){
                     this._global.hasLogin = true;
                     this._global.tokenValue = res.token || Cookie.get(this._global.tokenKey);
@@ -49,7 +46,6 @@ export class LoginComponent implements OnInit{
             .subscribe((res:any) => {
                 if(res && res.code == 200){
                     this._global.hasLogin = false;
-                    console.info(this._global.tokenKey);
                     window.sessionStorage.removeItem(this._global.tokenKey);
                     Cookie.remove(this._global.tokenKey);
                     this._router.navigateByUrl("login");

@@ -3,9 +3,6 @@ import { Http,Response,Headers } from '@angular/http'
 import { Global } from '../base/global';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class LoginService{
@@ -19,18 +16,9 @@ export class LoginService{
 
     public login(user:any):Observable<Response>{
         return this._http.post(this.userUrl.login,user)
-            .map((response: Response) => response.json() ) 
-            .catch(this.errorHandler);
     }
 
     public logout():Observable<Response>{
         return this._http.get(this.userUrl.loginOut)
-            .map((response: Response) => response.json() ) 
-            .catch(this.errorHandler);
-    }
-
-    public errorHandler(error: Response){
-        console.error(error);
-        return Observable.throw(error || "Server Error");
     }
 }

@@ -17,7 +17,6 @@ const TOGGLEBUTTON_VALUE_ACCESSOR:any = {
 })
 class ToggleButton implements ControlValueAccessor{
 
-
     @Input() onLabel: string = 'Yes';
 
     @Input() offLabel: string = 'No';
@@ -42,11 +41,6 @@ class ToggleButton implements ControlValueAccessor{
     
     public hover: boolean;
 
-    getIconClass() {
-        let baseClass = 'ui-button-icon-left fa fa-fw';
-        return baseClass + ' ' + (this.checked ? this.onIcon : this.offIcon);
-    }
-    
     toggle(event: Event) {
         if(!this.disabled) {
             this.checked = !this.checked;
