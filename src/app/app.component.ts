@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, ElementRef, Renderer ,RootRenderer } from '@angular/core';
-import { Global } from './base/global';
+import { Component, ElementRef, Inject, Renderer, RootRenderer } from '@angular/core';
+// import { Global } from './base/global';
 
 @Component({
     selector: 'my-app',
@@ -13,10 +13,9 @@ export class AppComponent {
         private renderer: Renderer,
         private router: Router,
         private route: ActivatedRoute,
-        private _global: Global,
+        @Inject('global') private _global,
     ) {
         renderer.listen(window, 'load', (event: any) => {
-            console.info(_global);
             var hasLogin = _global.hasLogin;
             if(hasLogin){
                 router.navigateByUrl("home");

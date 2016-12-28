@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from './login.service';
-import { Global } from '../base/global';
+// import { LoginService } from './login.service';
+// import { Global } from '../base/global';
 import { Cookie } from '../base/helper';
 
 
@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit{
     constructor(
         private _router: Router,
         private _route: ActivatedRoute,
-        private _loginService: LoginService,
-        private _global:Global
+        @Inject('loginService') private _loginService,
+        @Inject('global') private _global
     ){
-        
+
     }
 
     ngOnInit(){

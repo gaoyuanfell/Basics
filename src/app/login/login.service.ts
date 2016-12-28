@@ -19,7 +19,7 @@ export class LoginService{
 
     public login(user:any):Observable<Response>{
         return this._http.post(this.userUrl.login,user)
-            .map((response: Response) => response.json() ) 
+            .map((response: Response) => response.json() )
             .catch(this.errorHandler);
     }
 

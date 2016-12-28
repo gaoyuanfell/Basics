@@ -40,8 +40,8 @@ import appRoutes from './app.routes';
 	],
 	bootstrap: [AppComponent],
 	providers: [
-		LoginService,
-		Global,
+		{provide: 'loginService',  useClass: LoginService},
+		{provide: 'global',  useClass: Global}
 	].concat(Interceptor)
 })
 export class AppModule { }
