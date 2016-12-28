@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit{
             .subscribe((res:any) => {
                 if(res && res.code == 200){
                     this._global.hasLogin = false;
-                    console.info(this._global.tokenKey);
                     window.sessionStorage.removeItem(this._global.tokenKey);
                     Cookie.remove(this._global.tokenKey);
                     this._router.navigateByUrl("login");

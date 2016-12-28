@@ -9,12 +9,12 @@ import { LoginComponent } from './login/login.component';//首页
 import { HomeComponent } from './home/home.component';
 
 //自定义插件
-import { CheckboxModule,RadioButtonModule } from './common';
+import { CheckboxModule,RadioButtonModule,ToggleButtonModule,DialogModule } from './common';
 
 // 服务 Injectable
 import { LoginService } from './login/login.service';//登录
 
-// 拦截器 any[]
+// 拦截器 any
 import { Interceptor } from './base/interceptor'
 
 // Injectable
@@ -31,7 +31,9 @@ import appRoutes from './app.routes';
 		FormsModule,
 
 		CheckboxModule,
-		RadioButtonModule
+		RadioButtonModule,
+		ToggleButtonModule,
+		DialogModule
 	],
 	declarations: [
 		AppComponent,

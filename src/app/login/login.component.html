@@ -1,35 +1,27 @@
 <div class="user-login">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">用户名</label>
-        <div class="col-sm-8">
-            <input [(ngModel)]="_user.user" name="user" type="text" class="form-control" placeholder="用户名">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">密&emsp;码</label>
-        <div class="col-sm-8">
-            <input [(ngModel)]="_user.password" name="password" type="password" class="form-control" placeholder="密码">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-8">
-            <div class="checkbox">
-                <y-checkbox [(ngModel)]="remember" binary="true"></y-checkbox> Remember me {{remember}}
-
-                <y-checkbox [(ngModel)]="selectedCities" label="1" value="1"></y-checkbox>
-                <y-checkbox [(ngModel)]="selectedCities" label="2" value="2"></y-checkbox>
-                <y-checkbox [(ngModel)]="selectedCities" label="3" value="3"></y-checkbox>
-
-                {{selectedCities}}
-
-                <y-radio [(ngModel)]="selectedValue" label="1" name="1" value="1"> </y-radio>
-                <y-radio [(ngModel)]="selectedValue" label="2" name="1" value="2"> </y-radio>
-                <y-radio [(ngModel)]="selectedValue" label="3" name="1" value="3"> </y-radio>
-                <y-radio [(ngModel)]="selectedValue" label="4" name="1" value="4"> </y-radio>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-offset-2">
-        <button type="button" (click)="doLogin()" class="btn btn-default">登录</button>
-    </div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">用户名</label>
+		<div class="col-sm-8">
+			<input [(ngModel)]="_user.user" name="user" type="text" class="form-control" placeholder="用户名">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">密&emsp;码</label>
+		<div class="col-sm-8">
+			<input [(ngModel)]="_user.password" name="password" type="password" class="form-control" placeholder="密码">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+			<div class="checkbox">
+				<y-checkbox [(ngModel)]="remember" binary="true" label="Remember me"></y-checkbox>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+			<button type="button" (click)="doLogin()" class="btn btn-default">登录</button>
+		</div>
+	</div>
+	<y-dialog header="Title" [(visibled)]="remember" (okChange)="ok()" (noChange)="no()"></y-dialog>
 </div>

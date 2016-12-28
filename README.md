@@ -1,3 +1,6 @@
+## angular2 typeScript webpack 开发环境
+
+
 ##  HtmlWebpackPlugin
     title: 用来生成页面的 title 元素
     filename: 输出的 HTML 文件名，默认是 index.html, 也可以直接配置带有子目录。

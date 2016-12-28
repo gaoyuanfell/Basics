@@ -15,7 +15,7 @@ export class AppComponent {
         private route: ActivatedRoute,
         @Inject('global') private _global,
     ) {
-        renderer.listen(window, 'load', (event: any) => {
+        renderer.listenGlobal('window', 'load', (event: any) => {
             var hasLogin = _global.hasLogin;
             if(hasLogin){
                 router.navigateByUrl("home");
