@@ -5,15 +5,12 @@ import { HomeComponent } from './home/home.component';
 const appRoutes:Routes = [
     {
         path:'',
-        component:LoginComponent,
+        redirectTo: 'login',
+        pathMatch: 'full',
     },
     {
         path:'login',
         component:LoginComponent
-    },
-    {
-        path:'home',
-        component:HomeComponent
     },
     {
 		path:'**',//fallback router must in the last

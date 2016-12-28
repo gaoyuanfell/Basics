@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';//首页
 import { HomeComponent } from './home/home.component';
 
 //自定义插件
-import { CheckboxModule,RadioButtonModule,ToggleButtonModule,DialogModule } from './common';
+// import { CheckboxModule,RadioButtonModule,ToggleButtonModule,DialogModule } from './common';
 
 // 服务 Injectable
 import { LoginService } from './login/login.service';//登录
@@ -30,10 +30,10 @@ import appRoutes from './app.routes';
 		HttpModule,
 		FormsModule,
 
-		CheckboxModule,
-		RadioButtonModule,
-		ToggleButtonModule,
-		DialogModule
+		// CheckboxModule,
+		// RadioButtonModule,
+		// ToggleButtonModule,
+		// DialogModule
 	],
 	declarations: [
 		AppComponent,
@@ -42,8 +42,8 @@ import appRoutes from './app.routes';
 	],
 	bootstrap: [AppComponent],
 	providers: [
-		{provide: 'loginService',  useClass: LoginService},
-		{provide: 'global',  useClass: Global}
+		LoginService,
+		Global
 	].concat(Interceptor)
 })
 export class AppModule { }

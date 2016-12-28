@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, ElementRef, Inject, Renderer, RootRenderer } from '@angular/core';
-// import { Global } from './base/global';
+import { Component, ElementRef, Renderer, RootRenderer } from '@angular/core';
+import { Global } from './base/global';
 
 @Component({
     selector: 'my-app',
@@ -13,7 +13,7 @@ export class AppComponent {
         private renderer: Renderer,
         private router: Router,
         private route: ActivatedRoute,
-        @Inject('global') private _global,
+        private _global:Global,
     ) {
         renderer.listenGlobal('window', 'load', (event: any) => {
             var hasLogin = _global.hasLogin;
