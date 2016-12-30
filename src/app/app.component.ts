@@ -18,9 +18,9 @@ export class AppComponent {
         renderer.listenGlobal('window', 'load', (event: any) => {
             var hasLogin = _global.hasLogin;
             if(hasLogin){
-                router.navigateByUrl("home");
+                // router.navigateByUrl("home");
             }else{
-                router.navigateByUrl("login");
+                // router.navigateByUrl("login");
             }
         });
     }

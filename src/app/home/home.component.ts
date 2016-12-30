@@ -26,9 +26,9 @@ export class HomeComponent implements OnInit{
         this._loginService.logout()
             .subscribe((res:any) => {
                 if(res && res.code == 200){
-                    this._global.hasLogin = false;
-                    window.sessionStorage.removeItem(this._global.tokenKey);
-                    Cookie.remove(this._global.tokenKey);
+                    // this._global.hasLogin = false;
+                    // window.sessionStorage.removeItem(this._global.tokenKey);
+                    // Cookie.remove(this._global.tokenKey);
                     this._router.navigateByUrl("login");
                 }
             })

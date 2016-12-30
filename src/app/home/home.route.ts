@@ -1,18 +1,10 @@
 import {RouterModule} from "@angular/router";
-
 import {HomeComponent} from '../home/home.component';
-import {MenuComponent} from './menu/menu.component'
 
 export const mangeRoutes = [
 	{
-		path: '',
-		component: HomeComponent,
-		children: [
-			{
-				path: 'menu',
-				component: MenuComponent
-			}
-		]
+		path: 'home',
+		loadChildren: '../system/sys.module#SysModule'
 	}
 ];
 export default RouterModule.forChild(mangeRoutes);

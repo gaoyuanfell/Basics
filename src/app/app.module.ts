@@ -8,6 +8,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';//首页
 import { HomeComponent } from './home/home.component';
 
+import { HomeModule } from './home/home.module';
+
+// 路由守护
+import { AuthGuardService,AuthGuardChildService } from './base/authGuardService';
+
 //自定义插件
 // import { CheckboxModule,RadioButtonModule,ToggleButtonModule,DialogModule } from './common';
 
@@ -26,9 +31,10 @@ import appRoutes from './app.routes';
 @NgModule({
 	imports: [
 		BrowserModule,
-		appRoutes,
 		HttpModule,
 		FormsModule,
+		appRoutes,
+		HomeModule,
 
 		// CheckboxModule,
 		// RadioButtonModule,
@@ -42,6 +48,8 @@ import appRoutes from './app.routes';
 	],
 	bootstrap: [AppComponent],
 	providers: [
+		AuthGuardService,
+		AuthGuardChildService,
 		LoginService,
 		Global
 	].concat(Interceptor)

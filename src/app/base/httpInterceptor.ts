@@ -24,32 +24,32 @@ import 'rxjs/add/observable/throw';
 
 import { Global } from './global';
 
-export class HttpXHRBackend extends XHRBackend{
-    global:Global
+export class HttpXHRBackend extends XHRBackend {
+    global: Global
     constructor(
         _browserXHR: BrowserXhr,
-        _baseResponseOptions: ResponseOptions, 
+        _baseResponseOptions: ResponseOptions,
         _xsrfStrategy: XSRFStrategy,
-        global:Global
-    ){
-        super(_browserXHR,_baseResponseOptions,_xsrfStrategy);
+        global: Global
+    ) {
+        super(_browserXHR, _baseResponseOptions, _xsrfStrategy);
         this.global = global
     }
 
-    createConnection(request: Request):XHRConnection{
+    createConnection(request: Request): XHRConnection {
 
         var tokenKey = this.global.tokenKey;
         var tokenValue = this.global.tokenValue;
-        request.headers.set(tokenKey,tokenValue);
+        request.headers.set(tokenKey, tokenValue);
 
         let xhrConnection = super.createConnection(request);
         xhrConnection.response = xhrConnection.response.catch((error) => {
             return Observable.throw(error || "Server Error");
         });
-        xhrConnection.response = xhrConnection.response.map((data:any) => {
+        xhrConnection.response = xhrConnection.response.map((data: any) => {
             try {
                 let res = data.json();
-                if(res && res.code == 200){
+                if (res && res.code == 200) {
                     return res;
                 }
             } catch (e) {
@@ -60,14 +60,14 @@ export class HttpXHRBackend extends XHRBackend{
     }
 }
 
-class HttpInterceptor extends Http{
-    global:Global
+class HttpInterceptor extends Http {
+    global: Global
 
     constructor(
-        backend:ConnectionBackend,
-        defaultOptions:RequestOptions,
-        global:Global
-    ){
+        backend: ConnectionBackend,
+        defaultOptions: RequestOptions,
+        global: Global
+    ) {
         super(backend, defaultOptions);
         this.global = global
     }
@@ -78,56 +78,56 @@ class HttpInterceptor extends Http{
      * object can be provided as the 2nd argument. The options object will be merged with the values
      * of {@link BaseRequestOptions} before performing the request.
      */
-    request(url: string | Request, options?: RequestOptionsArgs): Observable<Response>{
-        return super.request(url,options)
+    request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+        return super.request(url, options)
     };
     /**
      * Performs a request with `get` http method.
      */
-    get(url: string, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({method:RequestMethod.Get,url:url},options)
+    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ method: RequestMethod.Get, url: url }, options)
         // return super.get(url,options)
     };
     /**
      * Performs a request with `post` http method.
      */
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({body:body,method:RequestMethod.Post,url:url},options)
+    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ body: body, method: RequestMethod.Post, url: url }, options)
         // return super.post(url,body,options)
     };
     /**
      * Performs a request with `put` http method.
      */
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({body:body,method:RequestMethod.Put,url:url},options)
+    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ body: body, method: RequestMethod.Put, url: url }, options)
         // return super.put(url,body,options)
     };
     /**
      * Performs a request with `delete` http method.
      */
-    delete(url: string, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({method:RequestMethod.Delete,url:url},options)
+    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ method: RequestMethod.Delete, url: url }, options)
         // return super.delete(url,options)
     };
     /**
      * Performs a request with `patch` http method.
      */
-    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({body:body,method:RequestMethod.Patch,url:url},options)
+    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ body: body, method: RequestMethod.Patch, url: url }, options)
         // return super.patch(url,body,options)
     };
     /**
      * Performs a request with `head` http method.
      */
-    head(url: string, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({method:RequestMethod.Head,url:url},options)
+    head(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ method: RequestMethod.Head, url: url }, options)
         // return super.head(url,options)
     };
     /**
      * Performs a request with `options` http method.
      */
-    options(url: string, options?: RequestOptionsArgs): Observable<Response>{
-        return this.requestHelper({method:RequestMethod.Options,url:url},options)
+    options(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        return this.requestHelper({ method: RequestMethod.Options, url: url }, options)
         // return super.options(url,options)
     };
 
@@ -143,7 +143,7 @@ class HttpInterceptor extends Http{
      */
     private requestHelper(requestArgs: RequestOptionsArgs, options?: RequestOptionsArgs): Observable<Response> {
         let _options = new RequestOptions(requestArgs);
-        if(options){
+        if (options) {
             _options = _options.merge(options);
         }
         var req = new Request(_options);
@@ -152,7 +152,7 @@ class HttpInterceptor extends Http{
         }
         var tokenKey = this.global.tokenKey;
         var tokenValue = this.global.tokenValue;
-        req.headers.set(tokenKey,tokenValue);
-        return this.request(req,_options);
+        req.headers.set(tokenKey, tokenValue);
+        return this.request(req, _options);
     }
 }
