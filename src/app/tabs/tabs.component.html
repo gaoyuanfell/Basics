@@ -1,0 +1,20 @@
+<div class="tabbar">
+    <a [routerLink]="['/home']" class="tab-button" routerLinkActive="active">
+        <span class="tab-button-icon">
+            <i class="icon">&#xe6da;</i>
+        </span>
+        <span class="tab-button-text">彩票大厅</span>
+    </a>
+    <a [routerLink]="['/info']" class="tab-button" routerLinkActive="active" [class.selected]="isSelected()">
+        <span class="tab-button-icon">
+            <i class="icon">&#xe6bc;</i>
+        </span>
+        <span class="tab-button-text">开奖公告</span>
+    </a>
+    <a [routerLink]="['/user']" class="tab-button" routerLinkActive="active">
+        <span class="tab-button-icon">
+            <i class="icon">&#xe6b8;</i>
+        </span>
+        <span class="tab-button-text">我的彩票</span>
+    </a>
+</div>

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
+    <title>AngularDemo</title>
     <base href="/">
-    <title>Angular With Webpack!</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <my-app>Loading...</my-app>
-  </body>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <app-root>
+        <img class="img" src="assets/img/t.jpg" height="100%" width="100%" style="opacity: 0;transition: opacity 1s" onload="this.style.opacity = 1">
+    </app-root>
+</body>
+
 </html>

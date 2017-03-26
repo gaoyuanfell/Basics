@@ -1,7 +1,6 @@
-
-<div>
-    <a routerLink='login'>login</a>
-    <router-outlet></router-outlet>
+<div class="tabs">
+    <router-outlet name="node"></router-outlet>
 </div>
-
+<!--<a [routerLink]="[{ outlets: { popup: ['tab'] } }]">Contact</a>-->
+<router-outlet></router-outlet>
 

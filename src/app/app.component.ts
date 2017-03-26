@@ -1,27 +1,15 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, ElementRef, Renderer, RootRenderer } from '@angular/core';
-import { Global } from './base/global';
+import { Component, Renderer } from '@angular/core';
 
 @Component({
-    selector: 'my-app',
+    selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    constructor(
-        private elementRef: ElementRef,
-        private renderer: Renderer,
-        private router: Router,
-        private route: ActivatedRoute,
-        private _global:Global,
-    ) {
-        renderer.listenGlobal('window', 'load', (event: any) => {
-            var hasLogin = _global.hasLogin;
-            if(hasLogin){
-                // router.navigateByUrl("home");
-            }else{
-                // router.navigateByUrl("login");
-            }
-        });
+    constructor(private renderer:Renderer){
+        renderer.listenGlobal('window','load',(event:Event) => {
+            console.info('load')
+            console.info(event)
+        })
     }
-}
+ }
