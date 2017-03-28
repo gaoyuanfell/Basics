@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { fadeInOut } from '../../../animations/fade-in-out';
 
 @Component({
-    selector: 'app-home',
+    selector: 'app-home1',
     templateUrl: './home1.component.html',
     styleUrls: ['./home1.component.scss'],
     animations: [fadeInOut]

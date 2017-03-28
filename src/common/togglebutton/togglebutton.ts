@@ -1,25 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ControlValueAccessor } from '@angular/forms/src/directives';
-import { Component, EventEmitter, forwardRef, Input, NgModule, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, NgModule, OnChanges, Output, SimpleChanges } from '@angular/core';
 
-const TOGGLEBUTTON_VALUE_ACCESSOR:any = {
-    provide:NG_VALUE_ACCESSOR,
-    useExisting:forwardRef(() => ToggleButton),
-    multi:true
+const TOGGLEBUTTON_VALUE_ACCESSOR: any = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => ToggleButton),
+    multi: true
 }
 
 @Component({
-    selector:'y-togglebutton',
-    styleUrls:['./togglebutton.css'],
-    templateUrl:'./togglebutton.html',
-    providers:[TOGGLEBUTTON_VALUE_ACCESSOR]
+    selector: 'app-togglebutton',
+    styleUrls: ['./togglebutton.css'],
+    templateUrl: './togglebutton.html',
+    providers: [TOGGLEBUTTON_VALUE_ACCESSOR]
 })
-class ToggleButton implements ControlValueAccessor{
+class ToggleButton implements ControlValueAccessor, OnChanges {
 
-    @Input() onLabel: string = 'Yes';
+    @Input() onLabel: string = '1';
 
-    @Input() offLabel: string = 'No';
+    @Input() offLabel: string = '0';
 
     @Input() onIcon: string;
 
@@ -32,17 +32,17 @@ class ToggleButton implements ControlValueAccessor{
     @Input() styleClass: string;
 
     @Output() onChange: EventEmitter<any> = new EventEmitter();
-    
+
     checked: boolean = false;
-    
-    onModelChange: Function = () => {};
-    
-    onModelTouched: Function = () => {};
-    
+
+    onModelChange: Function = () => { };
+
+    onModelTouched: Function = () => { };
+
     public hover: boolean;
 
     toggle(event: Event) {
-        if(!this.disabled) {
+        if (!this.disabled) {
             this.checked = !this.checked;
             this.onModelChange(this.checked);
             this.onModelTouched();
@@ -52,11 +52,11 @@ class ToggleButton implements ControlValueAccessor{
             })
         }
     }
-    
-    writeValue(value: any) : void {
+
+    writeValue(value: any): void {
         this.checked = value;
     }
-    
+
     registerOnChange(fn: Function): void {
         this.onModelChange = fn;
     }
@@ -64,9 +64,13 @@ class ToggleButton implements ControlValueAccessor{
     registerOnTouched(fn: Function): void {
         this.onModelTouched = fn;
     }
-    
+
     setDisabledState(val: boolean): void {
         this.disabled = val;
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.info(changes)
     }
 }
 

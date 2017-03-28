@@ -18,7 +18,12 @@ import { HeaderComponent } from './header/header.component';
 import { ConfigComponent } from './config/config.component';
 
 /*拦截器*/
-import { Interceptor } from '../providers/Interceptor'
+import { Interceptor } from '../providers/Interceptor';
+
+/*组件*/
+import { ToggleButtonModule } from '../common';
+
+import { Home2Module } from './home/home2/home2.modile';
 
 @NgModule({
     declarations: [
@@ -38,9 +43,11 @@ import { Interceptor } from '../providers/Interceptor'
         AppRoutingModule,
         HomeModule,
         TabsModule,
+        ToggleButtonModule,
+        Home2Module,
     ],
     providers: [
-        // ...Interceptor
+        ...Interceptor
     ],
     bootstrap: [AppComponent],
     schemas:[CUSTOM_ELEMENTS_SCHEMA]

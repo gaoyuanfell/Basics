@@ -8,8 +8,7 @@ import { Component, Renderer } from '@angular/core';
 export class AppComponent {
     constructor(private renderer:Renderer){
         renderer.listenGlobal('window','load',(event:Event) => {
-            console.info('load')
-            console.info(event)
+            
         })
     }
  }

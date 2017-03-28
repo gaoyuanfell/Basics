@@ -10,7 +10,7 @@ const CHECKBOX_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-    selector:'y-checkbox',
+    selector:'app-checkbox',
     templateUrl:'./checkbox.html',
     styleUrls:['./checkbox.css'],
     providers:[CHECKBOX_VALUE_ACCESSOR]

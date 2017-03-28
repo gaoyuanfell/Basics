@@ -36,11 +36,7 @@ export class HttpXHRBackend extends XHRBackend {
         });
         xhrConnection.response = xhrConnection.response.map((data: Response) => {
             try {
-                let content:String[] = data.headers.getAll('content-type');
-                let res = data.json();
-                if (res && res.code == 200) {
-                    return res;
-                }
+                return data.json();
             } catch (e) {
                 return data.text();
             }

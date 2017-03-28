@@ -20,7 +20,7 @@ const RADIO_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-    selector:'y-radio',
+    selector:'app-radio',
     templateUrl:'./radio.html',
     styleUrls:['./radio.css'],
     providers:[RADIO_VALUE_ACCESSOR]

@@ -9,34 +9,20 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         children: [
-            // {
-            //     path: '',
-            //     children: [
-            //         {
-            //             path: 'home1',
-            //             component: Home1Component,
-            //         },
-            //         {
-            //             path: 'home2',
-            //             component: Home2Component,
-            //             outlet: 'test'
-            //         },
-            //         {
-            //             path: '',
-            //             redirectTo: 'home1',
-            //             pathMatch: 'full'
-            //         }
-            //     ]
-            // },
             {
                 path: 'home1',
                 component: Home1Component,
-            },
-            {
-                path: 'home2',
-                component: Home2Component,
-                outlet:'test'
             }
+            // {
+            //     path: 'home2',
+            //     component: Home2Component,
+            //     outlet:'test'
+            // },
+            // {
+            //     path: 'home2',
+            //     component: Home2Component,
+            //     outlet:'poup'
+            // }
         ]
     }
 ];

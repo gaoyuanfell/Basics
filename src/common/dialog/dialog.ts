@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector:'y-dialog',
+    selector:'app-dialog',
     styleUrls:['./dialog.css'],
     templateUrl:'./dialog.html',
     animations:[ease],
